@@ -32,8 +32,6 @@ function ImgUpload() {
       })
     });
     alert("successfully posted!")
-    nav('/post')
-    window.location.reload(false);
   };
   }
 
