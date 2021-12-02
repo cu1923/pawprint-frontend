@@ -1,14 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
 import "../css/nav.css";
 import logo from "../images/pawprint_logo.png";
+import profile_logo from "../images/social/profile_img.jpg"
 
 function Navigation() {
+
   const logout = () =>{
-    localStorage.setItem("loggedIn", false);
-    localStorage.removeItem("username");
-    alert("successfully logged out!")
+    if(localStorage.getItem("loggedIn") === "true"){
+      localStorage.setItem("loggedIn", "false");
+      localStorage.removeItem("username");
+      alert("successfully logged out!")
+      window.location.reload(false);
+    }else{
+      alert("You are not logged in yet!!!")
+    }
   }
+
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -19,7 +27,7 @@ function Navigation() {
               <strong>Pawprint</strong>
             </div>
           </NavLink>
-          <div>
+          <div className = "navbar_container">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <NavLink className="nav-link" to="/">
@@ -62,18 +70,21 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to='/profile'>
-                  Profile
-                </NavLink>
-              </li>
-              <li className="nav-item">
                 <NavLink className="nav-link" to='/Search'>
                   Search
                 </NavLink>
               </li> 
             </ul>
           </div>
-        </div>
+          <div className="profile">
+            {
+              localStorage.getItem("loggedIn") === "true" ? ( <><p>{localStorage.getItem("username")}</p><NavLink className="nav-link" to='/profile'>
+                <a href="" className="profile_logo"><img className="profile_logo" src={profile_logo} /></a>
+              </NavLink></>) : (<></>)
+            }
+           
+          </div> 
+          </div>
       </nav>
     </div>
   );

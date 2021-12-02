@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import map from "../images/maps/UCLAMAP.png";
 import "../css/update.css";
 import Axios from 'axios'
@@ -54,11 +54,9 @@ class Update extends React.Component {
               <div className="seven" onClick={() => this.changeMap(7)}>
                 <i className="material-icons">location_on</i>
               </div>
-
               <div className="eight" onClick={() => this.changeMap(8)}>
                 <i className="material-icons">location_on</i>
               </div>
-
               <div className="nine" onClick={() => this.changeMap(9)}>
                 <i className="material-icons">location_on</i>
               </div>
@@ -68,7 +66,6 @@ class Update extends React.Component {
               <div className="eleven" onClick={() => this.changeMap(11)}>
                 <i className="material-icons">location_on</i>
               </div>
-
               <div className="twelve" onClick={() => this.changeMap(12)}>
                 <i className="material-icons">location_on</i>
               </div>

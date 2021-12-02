@@ -1,14 +1,17 @@
 import React, { useState}  from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
 import "../css/Image.css";
+import { useNavigate } from "react-router-dom";
+import { Button } from "./Button";
 
 function ImgUpload() {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState([]);
 
+  let nav = useNavigate();
+
   const upload = () =>{
-    if (localStorage.getItem("loggedIn") == "false"){
+    if (localStorage.getItem("loggedIn") === "false"){
       console.log("here")
       alert("please log in to post!")
     }
@@ -29,22 +32,25 @@ function ImgUpload() {
       })
     });
     alert("successfully posted!")
+    nav('/post')
+    window.location.reload(false);
   };
   }
 
   return (
-    <div className="ImgUpload">
-    <h1>Create a Post</h1>
-      <label>Say something:</label>
-      <input type="text"
-      placeholder="Title..."
-      onChange={(event) => {
-      setTitle(event.target.value);
-          }}
+    <div className="createContainer">
+      <div className="ImgUpload">
+        <h1>Create a Post</h1>
+        <input type="text"
+          placeholder="Caption"
+          onChange={(event) => {
+          setTitle(event.target.value);
+            }}
        />
 
-      <input type="file" onChange={(e)=> setImage(e.target.files)}/>
-      <button onClick={upload}>Submit</button>
+        <input type="file" onChange={(e)=> setImage(e.target.files)}/>
+        <Button onClick={upload} primary="true">Create</Button>
+      </div>
     </div>
   );
 }
